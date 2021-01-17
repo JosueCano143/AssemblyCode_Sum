@@ -1,0 +1,48 @@
+﻿ORG 000 
+inputData, Input / Entrada de datos
+Jump accumulate / Salto a 'accumulate'
+
+loop, Load result / Calcular el resultado final
+	Add one / Añadir '1' al resultado final
+    Store result / Guardar el dato
+    Load sum / Cargar el valor de 'sum'
+    Subt five / Restarle '5'
+    Store sum / Guardar el nuevo valor de 'sum'
+    Skipcond 000 / Si sum < 0 salta la siguiente línea 
+    Jump loop / Fución recursiva: salta a 'loop' para iniciar de nuevo el ciclo
+    
+validation, Load result / Cargar el resultado
+	Subt one / Restarle '1' para tener el valor real (el cual tiene una unidad más que fue agregada para salir del ciclo)
+    Store result / Almacenar el nuevo valor de 'result'
+    Output / Imprimir el resultado
+    Load iterations / Cargar la variable 'iterations' 
+    Skipcond 400 / Si iterations = 0 omite la siguiente línea 
+    Halt / Fin del programa
+ 
+resetValues, Load zero / se carga la constante 'zero' para hacer cero las variables y usarlas con la nueva iteración 
+	Store sum / La variable 'sum' se hace cero
+    Store counter / La variable 'counter' se hace cero
+    Store result / La variable 'result' se hace cero
+    Load iterations / Se carga la variable 'iterations' 
+    Add one / Se le suma '1' a la variable 'iterations
+    Store iterations / Se guarda el nuevo valor de la variable 'iterations'
+    Jump inputData / Se hace un salto a 'inputData' para solicitar los valores de la segunda iteración
+    
+accumulate, Add sum / El dato ingresado se agrega a 'sum'
+	Store sum / Se almacena la varible 'sum'
+    Load counter / Se carga la variable 'counter'
+    Add one / Se le añade '1' a 'counter'
+    Store counter / Se almacena la variable 'counter' modificada 
+    Subt five / Se le resta '1' a 'counter'
+    Skipcond 400 / Si counter es igual a 0 se omite la siguiente línea 
+    Jump inputData / Se hace un salto a 'inputData' para ingresar el siguiente dato
+    Jump loop / Se hace un salto a 'loop' para calular el resultado
+    
+one, DEC 1 / Constante 
+five, DEC 5 / Número de datos a ingresar en cada iteración 
+zero, DEC 0 / Constante 
+sum, DEC 0 / Variable para contener la suma de los datos de entrada 
+result, DEC 0 / Inicilización del resultado con '0'
+counter, DEC 0 / Contador de los datos ingresados 
+iterations, DEC 0 / Variable para manejar las iteraciones del programa
+    
